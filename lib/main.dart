@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     title: 'Composite Interest',
     home: CompInterestApp(),
   ));
@@ -18,6 +18,10 @@ class _CompInterestAppState extends State<CompInterestApp> {
   final FocusNode _focusNodeCapital = FocusNode();
   final FocusNode _focusNodeInterest = FocusNode();
   final FocusNode _focusNodeYear = FocusNode();
+
+  String _capital = '';
+  String _interestPercent = '';
+  String _year = '';
 
   @override
   Widget build(BuildContext context) {
@@ -50,30 +54,53 @@ class _CompInterestAppState extends State<CompInterestApp> {
             focusNode: _focusNodeCapital,
             decoration: InputDecoration(
               labelText: 'Capital',
-              labelStyle: TextStyle(color: _focusNodeCapital.hasFocus ? Colors.white : Colors.blue),
+              labelStyle: TextStyle(
+                  color:
+                      _focusNodeCapital.hasFocus ? Colors.white : Colors.blue),
             ),
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
             autofocus: false,
+            onChanged: (String value) {
+              setState(() {
+                _capital = value;
+              });
+            },
           ),
           TextField(
             focusNode: _focusNodeInterest,
             decoration: InputDecoration(
               labelText: 'Interest in %',
-              labelStyle: TextStyle(color: _focusNodeInterest.hasFocus ? Colors.white : Colors.blue),
+              labelStyle: TextStyle(
+                  color:
+                      _focusNodeInterest.hasFocus ? Colors.white : Colors.blue),
             ),
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
             autofocus: false,
+            onChanged: (String value) {
+              setState(() {
+                _interestPercent = value;
+              });
+            },
           ),
           TextField(
             focusNode: _focusNodeYear,
             decoration: InputDecoration(
               labelText: 'Year number',
-              labelStyle: TextStyle(color: _focusNodeYear.hasFocus ? Colors.white : Colors.blue),
+              labelStyle: TextStyle(
+                  color: _focusNodeYear.hasFocus ? Colors.white : Colors.blue),
             ),
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
             autofocus: false,
+            onChanged: (String value) {
+              setState(() {
+                _year = value;
+              });
+            },
           ),
-          Text('hello world'),
+          Text(
+            _capital + ' ' + _interestPercent + ' ' + _year,
+            style: const TextStyle(color: Colors.white),
+          ),
         ]),
       ),
     );
